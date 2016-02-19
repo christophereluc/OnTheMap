@@ -36,5 +36,9 @@ class LoginViewController: UIViewController {
         }
     }
 
+    @IBAction func launchSignUp(sender: AnyObject) {
+        let openLink = NSURL(string : "https://www.udacity.com/account/auth#!/signin")
+        UIApplication.sharedApplication().openURL(openLink!)
+    }
 }
 
