@@ -11,6 +11,8 @@ import UIKit
 
 class MapViewController : BaseViewController {
     
+    
+    
     @IBAction func logout(sender: AnyObject) {
         logout()
     }

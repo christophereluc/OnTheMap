@@ -14,7 +14,7 @@ extension APIClient {
     func login(username: String, password: String, completionHandlerForResult: (success: Bool, error: NSError?) -> Void) {
         let parameters = [String:NSObject]()
         let jsonBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
-        taskForPOSTMethod(Methods.Session, parameters: parameters, jsonBody: jsonBody) {
+        taskForPOSTMethod(udacity, method: Methods.Session, parameters: parameters, jsonBody: jsonBody) {
             (result, error) in
             if let error = error {
                 completionHandlerForResult(success: false, error: error)
@@ -25,5 +25,10 @@ extension APIClient {
         }
     }
     
+    func retrieveStudentLocations(completionHandlerForResults: (result: AnyObject!, error: NSError?) -> Void) {
+        let parameters = [String:NSObject]()
+        taskForGETMethod(parse, method: Methods.ParseStudentLocation, parameters: parameters, completionHandlerForGET: completionHandlerForResults)
+
+    }
    
 }

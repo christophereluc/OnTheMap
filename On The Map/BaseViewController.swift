@@ -11,6 +11,20 @@ import UIKit
 
 class BaseViewController : UIViewController, UINavigationBarDelegate {
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        APIClient.sharedInstance().retrieveStudentLocations() {
+            (result, error) in
+            
+            if let error = error {
+                print(error)
+            }
+            else if let result = result {
+                print(result)
+            }
+        }
+        
+    }
    
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return UIBarPosition.TopAttached

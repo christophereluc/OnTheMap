@@ -11,15 +11,21 @@ import Foundation
 class APIClient : NSObject {
     
     var session = NSURLSession.sharedSession()
+    let udacity = "Udacity"
+    let parse = "Parse"
     
     override init() {
         super.init()
     }
     
-    func taskForGETMethod(method: String, var parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(host: String, method: String, var parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: apiURLFromParameters(parameters, withPathExtension: method))
+        let request = NSMutableURLRequest(URL: apiURLFromParameters(host, parameters: parameters, withPathExtension: method))
+        if (host == parse) {
+            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        }
         
         /* 4. Make the request */
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -57,13 +63,17 @@ class APIClient : NSObject {
         return task
     }
     
-    func taskForPOSTMethod(method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(host: String, method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: apiURLFromParameters(parameters, withPathExtension: method))
+        let request = NSMutableURLRequest(URL: apiURLFromParameters(host, parameters: parameters, withPathExtension: method))
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        if (host == parse) {
+            request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        }
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
         
         /* 4. Make the request */
@@ -103,12 +113,12 @@ class APIClient : NSObject {
     }
     
     // create a URL from parameters
-    private func apiURLFromParameters(parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
+    private func apiURLFromParameters(host: String, parameters: [String:AnyObject], withPathExtension: String? = nil) -> NSURL {
         
         let components = NSURLComponents()
-        components.scheme = APIClient.Constants.ApiScheme
-        components.host = APIClient.Constants.ApiHost
-        components.path = APIClient.Constants.ApiPath + (withPathExtension ?? "")
+        components.scheme = (host == udacity ? APIClient.Constants.ApiScheme : APIClient.Constants.ParseScheme)
+        components.host = (host == udacity ? APIClient.Constants.ApiHost : APIClient.Constants.ParseHost)
+        components.path = (host == udacity ? APIClient.Constants.ApiPath : APIClient.Constants.ParsePath ) + (withPathExtension ?? "")
         components.queryItems = [NSURLQueryItem]()
         
         for (key, value) in parameters {

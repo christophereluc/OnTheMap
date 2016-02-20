@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        loginButton.enabled = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,14 +26,21 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func login(sender: AnyObject) {
-        
-        APIClient.sharedInstance().login(emailField.text!, password: passwordField.text!) { (success, error) in
-                print(success)
-                dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-                    self.loginButton.enabled = success
-            }
-        
+        if let resultController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as? UITabBarController {
+            self.presentViewController(resultController, animated: true, completion: nil)
         }
+        /*
+        self.loginButton.enabled = false;
+        APIClient.sharedInstance().login(emailField.text!, password: passwordField.text!) { (success, error) in
+            dispatch_async(dispatch_get_main_queue()) { [unowned self] in
+                if success {
+                    if let resultController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as? UITabBarController {
+                        self.presentViewController(resultController, animated: true, completion: nil)
+                    }
+                }
+                self.loginButton.enabled = true
+            }
+        }*/
     }
 
     @IBAction func launchSignUp(sender: AnyObject) {

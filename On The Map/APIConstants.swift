@@ -16,11 +16,17 @@ extension APIClient {
         static let ApiScheme = "https"
         static let ApiHost = "www.udacity.com"
         static let ApiPath = "/api"
+        
+        static let ParseScheme = "https"
+        static let ParseHost = "api.parse.com"
+        static let ParsePath = "/1"
+
     }
     
     struct Methods {
         static let Session = "/session"
         static let User = "/users/{id}"
+        static let ParseStudentLocation = "/classes/StudentLocation"
     }
     
     struct ParameterKeys {
