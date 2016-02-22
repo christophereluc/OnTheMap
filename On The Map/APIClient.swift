@@ -54,7 +54,7 @@ class APIClient : NSObject {
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
+            self.convertDataWithCompletionHandler(host, data: data, completionHandlerForConvertData: completionHandlerForGET)
         }
         
         /* 7. Start the request */
@@ -103,7 +103,7 @@ class APIClient : NSObject {
             }
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
-            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
+            self.convertDataWithCompletionHandler(host, data: data, completionHandlerForConvertData: completionHandlerForPOST)
         }
         
         /* 7. Start the request */
@@ -130,9 +130,9 @@ class APIClient : NSObject {
     }
     
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
+    private func convertDataWithCompletionHandler(host: String, data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
         
-        let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+        let newData = (host == udacity ? data.subdataWithRange(NSMakeRange(5, data.length - 5)) : data) /* subset response data! */
         var parsedResult: AnyObject!
         do {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)

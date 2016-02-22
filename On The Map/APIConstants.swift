@@ -32,10 +32,25 @@ extension APIClient {
     struct ParameterKeys {
         static let Username = "username"
         static let Password = "password"
+        static let Limit = "limit"
+        static let Order = "order"
+    }
+    
+    struct ParameterValues {
+        static let UpdatedAt = "-updatedAt"
+        static let Limit = "100"
     }
     
     struct JSONResponseKeys {
         static let Session = "session"
         static let SessionId = "id"
+        static let Results = "results"
+        static let CreatedAt = "createdAt"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        static let MapString = "mapString"
+        static let mediaURL = "mediaURL"
     }
 }

@@ -25,10 +25,27 @@ extension APIClient {
         }
     }
     
-    func retrieveStudentLocations(completionHandlerForResults: (result: AnyObject!, error: NSError?) -> Void) {
-        let parameters = [String:NSObject]()
-        taskForGETMethod(parse, method: Methods.ParseStudentLocation, parameters: parameters, completionHandlerForGET: completionHandlerForResults)
+    
+    //Retrieves student info
+    func retrieveStudentLocations(completionHandlerForResults: (result: [StudentInfo]!, error: NSError?) -> Void) {
+        let parameters = [
+            ParameterKeys.Limit: ParameterValues.Limit,
+            ParameterKeys.Order: ParameterValues.UpdatedAt
+        ]
+        taskForGETMethod(parse, method: Methods.ParseStudentLocation, parameters: parameters) {
+            (result, error) in
+            
+            if let error = error {
+                completionHandlerForResults(result: nil, error: error);
+            }
+            else if let result = result[JSONResponseKeys.Results] as? [[String:AnyObject]] {
+                let studentInfo = StudentInfo.studentInfoFromResults(result)
+                completionHandlerForResults(result: studentInfo, error: nil)
+            }
+            else {
+                completionHandlerForResults(result: nil, error: error);
+            }
+        }
 
     }
-   
 }

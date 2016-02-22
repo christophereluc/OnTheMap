@@ -134,7 +134,11 @@
                                             </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem systemItem="refresh" id="E8k-0x-uq3"/>
+                                            <barButtonItem systemItem="refresh" id="E8k-0x-uq3">
+                                                <connections>
+                                                    <action selector="refreshData:" destination="wJP-tm-SPf" id="B7N-o9-V3r"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem image="Pin" id="NKl-TQ-Tnd"/>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -143,6 +147,30 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Edf-bs-4QS">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="studentInfo" textLabel="cGb-d8-rIc" imageView="EUv-6P-Kah" style="IBUITableViewCellStyleDefault" id="xxm-Qi-GHi">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xxm-Qi-GHi" id="rqW-nK-L70">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cGb-d8-rIc">
+                                                    <rect key="frame" x="62" y="0.0" width="523" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Pin" id="EUv-6P-Kah">
+                                                    <rect key="frame" x="15" y="5" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -157,6 +185,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="List" id="LDg-XF-HH6"/>
+                    <connections>
+                        <outlet property="tableView" destination="Edf-bs-4QS" id="jVK-RI-YqX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Om8-yR-osV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,7 +215,11 @@
                                             </connections>
                                         </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem systemItem="refresh" id="87O-eX-Zjt"/>
+                                            <barButtonItem systemItem="refresh" id="87O-eX-Zjt">
+                                                <connections>
+                                                    <action selector="refreshMap:" destination="EgR-8H-C5R" id="0ip-sk-ZcR"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem image="Pin" id="78k-9e-ZLb"/>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -206,6 +241,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="uRo-nZ-kQz"/>
+                    <connections>
+                        <outlet property="mapView" destination="ZD2-NN-hVZ" id="TLb-7F-ztZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hV9-2Z-wij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

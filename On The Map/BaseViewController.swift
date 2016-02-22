@@ -11,19 +11,11 @@ import UIKit
 
 class BaseViewController : UIViewController, UINavigationBarDelegate {
     
+    var studentData:[StudentInfo] = []
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        APIClient.sharedInstance().retrieveStudentLocations() {
-            (result, error) in
-            
-            if let error = error {
-                print(error)
-            }
-            else if let result = result {
-                print(result)
-            }
-        }
-        
+        fetchData()
     }
    
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -32,5 +24,24 @@ class BaseViewController : UIViewController, UINavigationBarDelegate {
     
     func logout() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //Empty function; should be overriden by subclass
+    func dataRetrieved() {
+        
+    }
+    
+    //Fetches data from API
+    func fetchData() {
+        APIClient.sharedInstance().retrieveStudentLocations() {
+            (result, error) in
+            if let error = error {
+                print(error)
+            }
+            else if let result = result {
+                self.studentData = result
+                self.dataRetrieved()
+            }
+        }
     }
 }

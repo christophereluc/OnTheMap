@@ -15,6 +15,7 @@
 		83111A711C743E12004FCC66 /* On_The_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83111A701C743E12004FCC66 /* On_The_MapTests.swift */; };
 		83111A7C1C743E12004FCC66 /* On_The_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83111A7B1C743E12004FCC66 /* On_The_MapUITests.swift */; };
 		831C16C41C78421A00D8207C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831C16C31C78421A00D8207C /* MapKit.framework */; };
+		831C16C61C7AC76500D8207C /* StudentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831C16C51C7AC76500D8207C /* StudentInfo.swift */; };
 		831CBFDF1C7585D80037225B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CBFDE1C7585D80037225B /* BaseViewController.swift */; };
 		831CBFE21C7587700037225B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CBFE11C7587700037225B /* MapViewController.swift */; };
 		831CBFE41C75877C0037225B /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CBFE31C75877C0037225B /* ListViewController.swift */; };
@@ -55,6 +56,7 @@
 		83111A7B1C743E12004FCC66 /* On_The_MapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_The_MapUITests.swift; sourceTree = "<group>"; };
 		83111A7D1C743E12004FCC66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		831C16C31C78421A00D8207C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		831C16C51C7AC76500D8207C /* StudentInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfo.swift; sourceTree = "<group>"; };
 		831CBFDE1C7585D80037225B /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		831CBFE11C7587700037225B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		831CBFE31C75877C0037225B /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		83111A5A1C743E12004FCC66 /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
+				831C16C71C7AC76D00D8207C /* Model */,
 				831CBFE01C7587580037225B /* Controller */,
 				83111A891C743FA5004FCC66 /* Assets */,
 				83111A5B1C743E12004FCC66 /* AppDelegate.swift */,
@@ -151,6 +154,14 @@
 				83111A641C743E12004FCC66 /* LaunchScreen.storyboard */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		831C16C71C7AC76D00D8207C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				831C16C51C7AC76500D8207C /* StudentInfo.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		831CBFE01C7587580037225B /* Controller */ = {
@@ -294,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831C16C61C7AC76500D8207C /* StudentInfo.swift in Sources */,
 				83111A5E1C743E12004FCC66 /* LoginViewController.swift in Sources */,
 				831CBFEA1C758F5C0037225B /* APIConstants.swift in Sources */,
 				83111A5C1C743E12004FCC66 /* AppDelegate.swift in Sources */,

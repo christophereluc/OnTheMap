@@ -9,9 +9,44 @@
 import Foundation
 import UIKit
 
-class ListViewController : BaseViewController {
+class ListViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
+    let reuseIdentifier = "studentInfo"
     
     @IBAction func logout(sender: AnyObject) {
         logout()
+    }
+    
+    @IBAction func refreshData(sender: AnyObject) {
+        studentData.removeAll()
+        tableView.reloadData()
+        fetchData()
+    }
+    
+    override func viewDidLoad() {
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return studentData.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as UITableViewCell!
+        cell.textLabel?.text = studentData[indexPath.row].title
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let openLink = NSURL(string : studentData[indexPath.row].mediaURL)
+        UIApplication.sharedApplication().openURL(openLink!)
+    }
+    override func dataRetrieved() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.tableView.reloadData()
+        })
     }
 }
