@@ -119,7 +119,6 @@
 				831CBFE01C7587580037225B /* Controller */,
 				83111A891C743FA5004FCC66 /* Assets */,
 				83111A5B1C743E12004FCC66 /* AppDelegate.swift */,
-				83111A5D1C743E12004FCC66 /* LoginViewController.swift */,
 				83111A671C743E12004FCC66 /* Info.plist */,
 				831CBFE51C758E520037225B /* APIClient.swift */,
 				831CBFE91C758F5C0037225B /* APIConstants.swift */,
@@ -167,6 +166,7 @@
 		831CBFE01C7587580037225B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				83111A5D1C743E12004FCC66 /* LoginViewController.swift */,
 				831CBFDE1C7585D80037225B /* BaseViewController.swift */,
 				831CBFE11C7587700037225B /* MapViewController.swift */,
 				831CBFE31C75877C0037225B /* ListViewController.swift */,

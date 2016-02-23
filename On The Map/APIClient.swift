@@ -14,6 +14,8 @@ class APIClient : NSObject {
     let udacity = "Udacity"
     let parse = "Parse"
     
+    var studentData:[StudentInfo] = []
+    
     override init() {
         super.init()
     }

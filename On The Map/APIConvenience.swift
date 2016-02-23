@@ -11,6 +11,26 @@ import UIKit
 
 extension APIClient {
     
+    func loginAndRetrieveStudentLocations(username: String, password: String, completionHandlerForResult: (success: Bool, error: NSError?) -> Void) {
+        login(username, password: password) {
+            (success, error) in
+            if success {
+                self.retrieveStudentLocations() {
+                    (success, error) in
+                    if success {
+                        completionHandlerForResult(success: true, error: nil)
+                    }
+                    else {
+                        completionHandlerForResult(success: false, error: error)
+                    }
+                }
+            }
+            else {
+                completionHandlerForResult(success: false, error: error)
+            }
+        }
+    }
+    
     func login(username: String, password: String, completionHandlerForResult: (success: Bool, error: NSError?) -> Void) {
         let parameters = [String:NSObject]()
         let jsonBody = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
@@ -27,7 +47,7 @@ extension APIClient {
     
     
     //Retrieves student info
-    func retrieveStudentLocations(completionHandlerForResults: (result: [StudentInfo]!, error: NSError?) -> Void) {
+    func retrieveStudentLocations(completionHandlerForResults: (success: Bool, error: NSError?) -> Void) {
         let parameters = [
             ParameterKeys.Limit: ParameterValues.Limit,
             ParameterKeys.Order: ParameterValues.UpdatedAt
@@ -36,14 +56,14 @@ extension APIClient {
             (result, error) in
             
             if let error = error {
-                completionHandlerForResults(result: nil, error: error);
+                completionHandlerForResults(success: false, error: error);
             }
             else if let result = result[JSONResponseKeys.Results] as? [[String:AnyObject]] {
-                let studentInfo = StudentInfo.studentInfoFromResults(result)
-                completionHandlerForResults(result: studentInfo, error: nil)
+                self.studentData = StudentInfo.studentInfoFromResults(result)
+                completionHandlerForResults(success: true, error: nil)
             }
             else {
-                completionHandlerForResults(result: nil, error: error);
+                completionHandlerForResults(success: false, error: error);
             }
         }
 

@@ -26,21 +26,20 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func login(sender: AnyObject) {
-        if let resultController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as? UITabBarController {
-            self.presentViewController(resultController, animated: true, completion: nil)
-        }
-        /*
+        
         self.loginButton.enabled = false;
-        APIClient.sharedInstance().login(emailField.text!, password: passwordField.text!) { (success, error) in
+        APIClient.sharedInstance().loginAndRetrieveStudentLocations(emailField.text!, password: passwordField.text!) { (success, error) in
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
                 if success {
+                    self.emailField.text = ""
+                    self.passwordField.text = ""
                     if let resultController = self.storyboard?.instantiateViewControllerWithIdentifier("TabBar") as? UITabBarController {
                         self.presentViewController(resultController, animated: true, completion: nil)
                     }
                 }
                 self.loginButton.enabled = true
             }
-        }*/
+        }
     }
 
     @IBAction func launchSignUp(sender: AnyObject) {

@@ -15,7 +15,7 @@ class BaseViewController : UIViewController, UINavigationBarDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
+        studentData = APIClient.sharedInstance().studentData
     }
    
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
@@ -34,12 +34,9 @@ class BaseViewController : UIViewController, UINavigationBarDelegate {
     //Fetches data from API
     func fetchData() {
         APIClient.sharedInstance().retrieveStudentLocations() {
-            (result, error) in
-            if let error = error {
-                print(error)
-            }
-            else if let result = result {
-                self.studentData = result
+            (success, error) in
+            if success {
+                self.studentData = APIClient.sharedInstance().studentData
                 self.dataRetrieved()
             }
         }

@@ -29,6 +29,7 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        dataRetrieved()
     }
     
     override func dataRetrieved() {
