@@ -12,7 +12,6 @@ import UIKit
 class ListViewController : BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    let reuseIdentifier = "studentInfo"
     
     @IBAction func logout(sender: AnyObject) {
         logout()
@@ -41,9 +40,9 @@ class ListViewController : BaseViewController, UITableViewDataSource, UITableVie
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let openLink = NSURL(string : studentData[indexPath.row].mediaURL)
-        UIApplication.sharedApplication().openURL(openLink!)
+        launchLink(studentData[indexPath.row].mediaURL)
     }
+    
     override func dataRetrieved() {
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             self.tableView.reloadData()

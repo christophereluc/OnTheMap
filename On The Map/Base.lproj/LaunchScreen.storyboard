@@ -24,7 +24,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" editable="NO" text="Christopher Luc - 2015" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-yS-8gn">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" editable="NO" text="Christopher Luc - 2016" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP1-yS-8gn">
                                 <rect key="frame" x="0.0" y="274" width="600" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

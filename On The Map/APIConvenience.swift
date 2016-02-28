@@ -11,14 +11,23 @@ import UIKit
 
 extension APIClient {
     
+    //Handles complete login flow (login, get user data, get data from parse)
     func loginAndRetrieveStudentLocations(username: String, password: String, completionHandlerForResult: (success: Bool, error: NSError?) -> Void) {
         login(username, password: password) {
             (success, error) in
             if success {
-                self.retrieveStudentLocations() {
+                self.getUserData(self.studentId!) {
                     (success, error) in
                     if success {
-                        completionHandlerForResult(success: true, error: nil)
+                        self.retrieveStudentLocations() {
+                            (success, error) in
+                            if success {
+                                completionHandlerForResult(success: true, error: nil)
+                            }
+                            else {
+                                completionHandlerForResult(success: false, error: error)
+                            }
+                        }
                     }
                     else {
                         completionHandlerForResult(success: false, error: error)
@@ -40,13 +49,42 @@ extension APIClient {
                 completionHandlerForResult(success: false, error: error)
             }
             else {
-                completionHandlerForResult(success: true, error: nil)
+                if let account = result[JSONResponseKeys.Account] as? [String:AnyObject] {
+                    if let key = account[JSONResponseKeys.Key] as? String {
+                        self.studentId = key
+                        completionHandlerForResult(success: true, error: nil)
+                        return
+                    }
+                }
+                completionHandlerForResult(success: false, error: error)
             }
         }
     }
     
+    //Gets users's public data (for first/last name)
+    func getUserData(userKey: String, completionHandlerForResult: (success: Bool, error: NSError?) -> Void) {
+        let parameters = [String:NSObject]()
+        let method = "\(Methods.User)/\(userKey)"
+        taskForGETMethod(udacity, method: method, parameters: parameters) {
+            (result, error) in
+            if let error = error {
+                completionHandlerForResult(success: false, error: error)
+            }
+            else {
+                if let user = result[JSONResponseKeys.User] as? [String:AnyObject] {
+                    if let firstName = user[JSONResponseKeys.UdacityFirstName] as? String, lastName = user[JSONResponseKeys.UdacityLastName] as? String {
+                        self.firstName = firstName
+                        self.lastName = lastName
+                        completionHandlerForResult(success: true, error: nil)
+                        return
+                    }
+                }
+                completionHandlerForResult(success: false, error: error)
+            }
+        }
+    }
     
-    //Retrieves student info
+    //Retrieves student info from Parse API
     func retrieveStudentLocations(completionHandlerForResults: (success: Bool, error: NSError?) -> Void) {
         let parameters = [
             ParameterKeys.Limit: ParameterValues.Limit,

@@ -15,19 +15,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signupText: UITextView!
     @IBOutlet weak var loginButton: UIButton!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        emailField.text = ""
+        passwordField.text = ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.enabled = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     @IBAction func login(sender: AnyObject) {
-        
-        self.loginButton.enabled = false;
+        loginButton.setTitle("Loading", forState: .Normal)
+        loginButton.enabled = false;
         APIClient.sharedInstance().loginAndRetrieveStudentLocations(emailField.text!, password: passwordField.text!) { (success, error) in
             dispatch_async(dispatch_get_main_queue()) { [unowned self] in
                 if success {
@@ -37,7 +38,14 @@ class LoginViewController: UIViewController {
                         self.presentViewController(resultController, animated: true, completion: nil)
                     }
                 }
+                else {
+                    let alert = UIAlertController(title: "Error", message: "There was an issue logging in.", preferredStyle: .Alert)
+                    let ok = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+                    alert.addAction(ok)
+                    self.presentViewController(alert, animated: true, completion: nil)
+                }
                 self.loginButton.enabled = true
+                self.loginButton.setTitle("Login", forState: .Normal)
             }
         }
     }

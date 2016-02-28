@@ -15,6 +15,9 @@ class APIClient : NSObject {
     let parse = "Parse"
     
     var studentData:[StudentInfo] = []
+    var studentId: String?
+    var firstName: String?
+    var lastName: String?
     
     override init() {
         super.init()

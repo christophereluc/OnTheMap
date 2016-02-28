@@ -25,7 +25,7 @@ extension APIClient {
     
     struct Methods {
         static let Session = "/session"
-        static let User = "/users/{id}"
+        static let User = "/users"
         static let ParseStudentLocation = "/classes/StudentLocation"
     }
     
@@ -42,6 +42,8 @@ extension APIClient {
     }
     
     struct JSONResponseKeys {
+        static let Account = "account"
+        static let Key = "key"
         static let Session = "session"
         static let SessionId = "id"
         static let Results = "results"
@@ -52,5 +54,8 @@ extension APIClient {
         static let Longitude = "longitude"
         static let MapString = "mapString"
         static let mediaURL = "mediaURL"
+        static let User = "user"
+        static let UdacityLastName = "last_name"
+        static let UdacityFirstName = "first_name"
     }
 }

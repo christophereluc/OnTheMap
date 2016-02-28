@@ -12,8 +12,6 @@ import MapKit
 
 class MapViewController : BaseViewController, MKMapViewDelegate {
     
-    let reuseIdentifier = "studentInfo"
-    
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func logout(sender: AnyObject) {
@@ -40,9 +38,7 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         let studentInfo = view.annotation as! StudentInfo
-        let openLink = NSURL(string : studentInfo.mediaURL)
-        UIApplication.sharedApplication().openURL(openLink!)
-        
+        launchLink(studentInfo.mediaURL)
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
