@@ -18,7 +18,6 @@ class ListViewController : BaseViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func refreshData(sender: AnyObject) {
-        studentData.removeAll()
         tableView.reloadData()
         fetchData()
     }
@@ -29,18 +28,18 @@ class ListViewController : BaseViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return studentData.count
+        return StudentInfo.studentInfoDictionary.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier) as UITableViewCell!
-        cell.textLabel?.text = studentData[indexPath.row].title
+        cell.textLabel?.text = StudentInfo.studentInfoDictionary[indexPath.row].title
         return cell
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        launchLink(studentData[indexPath.row].mediaURL)
+        launchLink(StudentInfo.studentInfoDictionary[indexPath.row].mediaURL)
     }
     
     override func dataRetrieved() {

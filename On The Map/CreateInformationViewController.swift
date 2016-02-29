@@ -27,6 +27,7 @@ class CreateInformationViewControler : UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         locationField.delegate = self
+        urlText.delegate = self
         map.hidden = true
         activityIndicator.hidden = true
         urlText.hidden = true

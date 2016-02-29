@@ -418,7 +418,7 @@ today?</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.8050799006636753" green="0.80126242548529658" blue="0.86794420809999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -458,20 +458,20 @@ today?</string>
                                         <exclude reference="bJw-q5-OW5"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="9lP-58-voj"/>
+                                        <exclude reference="6Hz-ZS-ADG"/>
+                                        <exclude reference="BUL-Se-dRd"/>
+                                        <exclude reference="c00-dV-yra"/>
                                         <exclude reference="Ea2-eE-fkm"/>
                                         <exclude reference="IVY-BG-QVD"/>
                                         <exclude reference="PaT-eo-lOw"/>
                                         <exclude reference="aZf-zb-6e6"/>
+                                        <exclude reference="9lP-58-voj"/>
                                         <exclude reference="lel-2x-hv5"/>
                                         <exclude reference="zv7-zI-XqO"/>
                                         <exclude reference="T2E-BP-Suh"/>
                                         <exclude reference="kTP-1Z-v6B"/>
                                         <exclude reference="nIs-k6-nsh"/>
                                         <exclude reference="xzh-3t-t0k"/>
-                                        <exclude reference="6Hz-ZS-ADG"/>
-                                        <exclude reference="BUL-Se-dRd"/>
-                                        <exclude reference="c00-dV-yra"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -480,12 +480,15 @@ today?</string>
                                         <include reference="bJw-q5-OW5"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="9lP-58-voj"/>
-                                        <exclude reference="Jwf-Va-8Br"/>
+                                        <include reference="6Hz-ZS-ADG"/>
+                                        <include reference="BUL-Se-dRd"/>
+                                        <include reference="c00-dV-yra"/>
                                         <include reference="Ea2-eE-fkm"/>
                                         <include reference="IVY-BG-QVD"/>
                                         <include reference="PaT-eo-lOw"/>
                                         <include reference="aZf-zb-6e6"/>
+                                        <include reference="9lP-58-voj"/>
+                                        <exclude reference="Jwf-Va-8Br"/>
                                         <exclude reference="6gV-f2-MhY"/>
                                         <exclude reference="6ye-Ay-vk0"/>
                                         <exclude reference="H7V-mZ-hOk"/>
@@ -498,9 +501,6 @@ today?</string>
                                         <include reference="nIs-k6-nsh"/>
                                         <exclude reference="qVQ-JQ-PAL"/>
                                         <include reference="xzh-3t-t0k"/>
-                                        <include reference="6Hz-ZS-ADG"/>
-                                        <include reference="BUL-Se-dRd"/>
-                                        <include reference="c00-dV-yra"/>
                                     </mask>
                                 </variation>
                             </view>

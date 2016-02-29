@@ -23,6 +23,7 @@
 		831CBFEA1C758F5C0037225B /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CBFE91C758F5C0037225B /* APIConstants.swift */; };
 		831CBFEC1C7595110037225B /* APIConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831CBFEB1C7595110037225B /* APIConvenience.swift */; };
 		8327231D1C8387DC00017EBF /* CreateInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8327231C1C8387DC00017EBF /* CreateInformationViewController.swift */; };
+		83474CF41C83EF6E00BBC141 /* StudentInfoAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83474CF31C83EF6E00BBC141 /* StudentInfoAnnotation.swift */; };
 		83B528B81C83951700E2B154 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B528B71C83951700E2B154 /* RoundedButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		831CBFE91C758F5C0037225B /* APIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		831CBFEB1C7595110037225B /* APIConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConvenience.swift; sourceTree = "<group>"; };
 		8327231C1C8387DC00017EBF /* CreateInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateInformationViewController.swift; sourceTree = "<group>"; };
+		83474CF31C83EF6E00BBC141 /* StudentInfoAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInfoAnnotation.swift; sourceTree = "<group>"; };
 		83B528B71C83951700E2B154 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				831C16C51C7AC76500D8207C /* StudentInfo.swift */,
+				83474CF31C83EF6E00BBC141 /* StudentInfoAnnotation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83474CF41C83EF6E00BBC141 /* StudentInfoAnnotation.swift in Sources */,
 				831C16C61C7AC76500D8207C /* StudentInfo.swift in Sources */,
 				83111A5E1C743E12004FCC66 /* LoginViewController.swift in Sources */,
 				831CBFEA1C758F5C0037225B /* APIConstants.swift in Sources */,

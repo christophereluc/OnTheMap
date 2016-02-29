@@ -32,17 +32,17 @@ class MapViewController : BaseViewController, MKMapViewDelegate {
     
     override func dataRetrieved() {
         dispatch_async(dispatch_get_main_queue()) { [unowned self] in
-            self.mapView.addAnnotations(self.studentData)
+            self.mapView.addAnnotations(StudentInfoAnnotation.convertDictionaryToAnnotation(StudentInfo.studentInfoDictionary))
         }
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        let studentInfo = view.annotation as! StudentInfo
-        launchLink(studentInfo.mediaURL)
+        let studentInfo = view.annotation as! StudentInfoAnnotation
+        launchLink(studentInfo.mediaUrl)
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if annotation.isKindOfClass(StudentInfo.self) {
+        if annotation.isKindOfClass(StudentInfoAnnotation.self) {
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
             
             if annotationView == nil {

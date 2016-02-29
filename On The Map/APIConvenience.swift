@@ -102,7 +102,7 @@ extension APIClient {
                 completionHandlerForResults(success: false, error: error);
             }
             else if let result = result[JSONResponseKeys.Results] as? [[String:AnyObject]] {
-                self.studentData = StudentInfo.studentInfoFromResults(result)
+                StudentInfo.studentInfoFromResults(result)
                 completionHandlerForResults(success: true, error: nil)
             }
             else {
@@ -125,6 +125,25 @@ extension APIClient {
             }
             else {
                 completionHandlerForResults(success: false, error: error)
+            }
+        }
+    }
+    
+    //Used to logout
+    func logout(completionHandlerForResults: ((success: Bool, error: NSError?) -> Void)?) {
+        let parameters = [String:NSObject]()
+        taskForDELETEMedthod(udacity, method: Methods.Session, parameters: parameters) {
+            (result, error) in
+            self.firstName = nil
+            self.lastName = nil
+            if let error = error {
+                completionHandlerForResults?(success: false, error: error)
+            }
+            else if let _ = result[JSONResponseKeys.Session] as? String {
+                completionHandlerForResults?(success: true, error: nil)
+            }
+            else {
+                completionHandlerForResults?(success: false, error: error)
             }
         }
     }

@@ -8,7 +8,10 @@
 
 import MapKit
 
-class StudentInfo : NSObject, MKAnnotation {
+struct StudentInfo {
+    
+    static var studentInfoDictionary = [StudentInfo]()
+    
     var createdAt: String
     var firstName: String
     var lastName: String
@@ -34,13 +37,13 @@ class StudentInfo : NSObject, MKAnnotation {
     }
     
     //Helper used to convert results object to student info dictionary
-    static func studentInfoFromResults(results: [[String:AnyObject]]) -> [StudentInfo] {
+    static func studentInfoFromResults(results: [[String:AnyObject]]) {
         var studentInfo = [StudentInfo]()
         
         for result in results {
             studentInfo.append(StudentInfo(dictionary: result))
         }
         
-        return studentInfo
+        return StudentInfo.studentInfoDictionary = studentInfo
     }
 }

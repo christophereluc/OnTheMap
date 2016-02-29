@@ -11,17 +11,11 @@ import UIKit
 
 class BaseViewController : UIViewController, UINavigationBarDelegate {
     
-    var studentData:[StudentInfo] = []
     let reuseIdentifier = "studentInfo"
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //Retrieve data from API client
-        studentData = APIClient.sharedInstance().studentData
-    }
     
     //Dismisses the VC and returns to the homescreen
     func logout() {
+        APIClient.sharedInstance().logout(nil)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -36,8 +30,12 @@ class BaseViewController : UIViewController, UINavigationBarDelegate {
         APIClient.sharedInstance().retrieveStudentLocations() {
             (success, error) in
             if success {
-                self.studentData = APIClient.sharedInstance().studentData
                 self.dataRetrieved()
+            }
+            else {
+                let alertController = UIAlertController(title: nil, message: "Error download student data", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
     }
