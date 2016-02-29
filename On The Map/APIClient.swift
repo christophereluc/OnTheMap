@@ -82,28 +82,31 @@ class APIClient : NSObject {
         request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
         
         /* 4. Make the request */
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+        let task = session.dataTaskWithRequest(request) {
+            (data, response, error) in
             
-            func sendError(error: String) {
+            func sendError(error: String, code: Int) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForPostMethod", code: code, userInfo: userInfo))
             }
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("There was an error with your request: \(error)", code: 2)
                 return
             }
+            print(NSString(data: (data?.copy())! as! NSData, encoding: NSUTF8StringEncoding))
+
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                sendError("Your request returned a status code other than 2xx!", code: 1)
                 return
             }
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                sendError("No data was returned by the request!", code: 3)
                 return
             }
             

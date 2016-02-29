@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
                     }
                 }
                 else {
-                    let alert = UIAlertController(title: "Error", message: "There was an issue logging in.", preferredStyle: .Alert)
+                    let alert = UIAlertController(title: "Error", message: error?.domain, preferredStyle: .Alert)
                     let ok = UIAlertAction(title: "Ok", style: .Default, handler: nil)
                     alert.addAction(ok)
                     self.presentViewController(alert, animated: true, completion: nil)

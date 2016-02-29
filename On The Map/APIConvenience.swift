@@ -25,17 +25,22 @@ extension APIClient {
                                 completionHandlerForResult(success: true, error: nil)
                             }
                             else {
-                                completionHandlerForResult(success: false, error: error)
+                                completionHandlerForResult(success: false, error: NSError(domain: "Error downloading user location data", code: 1, userInfo: error?.userInfo))
                             }
                         }
                     }
                     else {
-                        completionHandlerForResult(success: false, error: error)
+                        completionHandlerForResult(success: false, error: NSError(domain: "Error downloading user data from Udacity", code: 1, userInfo: error?.userInfo))
                     }
                 }
             }
             else {
-                completionHandlerForResult(success: false, error: error)
+                if error?.code == 1 {
+                    completionHandlerForResult(success: false, error: NSError(domain: "Invalid user name or password", code: 6, userInfo: error?.userInfo))
+                }
+                else {
+                    completionHandlerForResult(success: false, error: NSError(domain: "Network response error when logging in", code: 1, userInfo: error?.userInfo))
+                }
             }
         }
     }
@@ -104,6 +109,23 @@ extension APIClient {
                 completionHandlerForResults(success: false, error: error);
             }
         }
-
+    }
+    
+    //Used to post a location to parse
+    func postLocation(location: String, url: String, latitude: Float, longitude: Float, completionHandlerForResults: (success: Bool, error: NSError?) -> Void ) {
+        let parameters = [String:NSObject]()
+        let jsonBody = "{\"uniqueKey\": \"\(studentId!)\", \"firstName\": \"\(firstName!)\", \"lastName\": \"\(lastName!)\",\"mapString\": \"\(location)\", \"mediaURL\": \"\(url)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
+        taskForPOSTMethod(parse, method: Methods.ParseStudentLocation, parameters: parameters, jsonBody: jsonBody) {
+            (result, error) in
+            if let error = error {
+                completionHandlerForResults(success: false, error: error)
+            }
+            else if let _ = result[JSONResponseKeys.CreatedAt] as? String {
+                completionHandlerForResults(success: true, error: nil)
+            }
+            else {
+                completionHandlerForResults(success: false, error: error)
+            }
+        }
     }
 }
