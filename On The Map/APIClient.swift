@@ -22,7 +22,7 @@ class APIClient : NSObject {
         super.init()
     }
     
-    func taskForGETMethod(host: String, method: String, var parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod(host: String, method: String, parameters: [String:AnyObject], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(URL: apiURLFromParameters(host, parameters: parameters, withPathExtension: method))
@@ -67,7 +67,7 @@ class APIClient : NSObject {
         return task
     }
     
-    func taskForDELETEMedthod(host: String, method: String, var parameters: [String:AnyObject], completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForDELETEMedthod(host: String, method: String, parameters: [String:AnyObject], completionHandlerForDELETE: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         let request = NSMutableURLRequest(URL: apiURLFromParameters(host, parameters: parameters, withPathExtension: method))
         request.HTTPMethod = "DELETE"
@@ -122,7 +122,7 @@ class APIClient : NSObject {
         return task
     }
     
-    func taskForPOSTMethod(host: String, method: String, var parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod(host: String, method: String, parameters: [String:AnyObject], jsonBody: String, completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(URL: apiURLFromParameters(host, parameters: parameters, withPathExtension: method))
